@@ -1,0 +1,30 @@
+
+Terms and Conditions
+
+1. Acceptance of Terms
+By using this software, you agree to be bound by these terms and conditions.
+
+2. Use of the Software
+You are granted a non-exclusive, non-transferable license to use the software for personal or commercial purposes.
+
+3. Restrictions
+You may not modify, adapt, reverse engineer, decompile, or disassemble the software.
+
+4. Intellectual Property
+All intellectual property rights in the software are owned by the developer.
+
+5. Warranty Disclaimer
+The software is provided "as is" without any warranty, express or implied.
+
+6. Limitation of Liability
+The developer shall not be liable for any direct, indirect, incidental, special, or consequential damages.
+
+7. Governing Law
+These terms and conditions are governed by the laws of [your jurisdiction].
+
+8. Changes to Terms
+The developer reserves the right to update these terms and conditions at any time.
+
+9. Contact Information
+For questions or concerns regarding these terms, please contact [your contact information].
+
