@@ -55,17 +55,6 @@ class Student_view:
         self.var_email=StringVar()
         self.var_address=StringVar()
         self.var_teacher=StringVar()
-
-        # def grab_date():
-        #     student_dob_entry = cal.get_date()
-        #     print("Selected Date:", student_dob_entry)
-        #     # Add your logic to handle the selected date as needed
-        #     date_window.destroy()
-
-     
-
-        # Assuming you have a delete_window somewhere else in your code
-        # and you want to destroy it, you can add a function like this:
             
 
     # This part is image labels setting start 
@@ -187,7 +176,6 @@ class Student_view:
         self.root.withdraw()
         if hasattr(self, 'show_main_app_callback') and callable(self.show_main_app_callback):
             self.show_main_app_callback()
-    
 
     
     def exportCsvRight(self):
@@ -233,41 +221,6 @@ class Student_view:
             messagebox.showerror("Error", f"Due to: {str(es)}", parent=self.root)
     
     logging.basicConfig(filename='user_actions.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-    def add_data(self):
-       
-        if self.var_std_id.get()=="" or self.var_std_name.get()=="" or self.var_std_mname.get()=="" or self.var_std_lname.get()=="" or self.var_div.get()=="" or self.var_gender.get()=="" or self.var_roll.get()=="" or self.var_dob.get()=="" or self.var_email.get()=="" or self.var_address.get()=="" or self.var_teacher.get()=="":
-            
-            messagebox.showerror("Error","Please Fill All Fields are Required!",parent=self.root)
-        else:
-            try:
-                conn = mysql.connector.connect(username='root', password='',host='localhost',database='face_recognition')
-                mycursor = conn.cursor()
-                mycursor.execute("insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
-                self.var_std_id.get(),
-                self.var_std_name.get(),
-                self.var_std_mname.get(),
-                self.var_std_lname.get(),
-                self.var_div.get(),
-                self.var_gender.get(),
-                self.var_dob.get(),
-                self.var_address.get(),
-                self.var_roll.get(),
-                self.var_email.get(),
-                self.var_teacher.get(),
-                self.var_radio1.get()
-                ))
-                
-                
-                
-                conn.commit()
-                self.fetch_data()
-                conn.close()
-                messagebox.showinfo("Success","All Records are Saved!",parent=self.root)
-                logging.info(f"User added data for Student ID: {self.var_std_id.get()}")
-            except Exception as es:
-                logging.error(f"Error during data addition: {str(es)}")
-                messagebox.showerror("Error",f"Due to: {str(es)}",parent=self.root)
 
 
     # ===========================Fetch data form database to table ================================
@@ -326,48 +279,8 @@ class Student_view:
         self.radiobtn1['state'] = tk.NORMAL
         self.radiobtn2['state'] = tk.DISABLED
 
-        # Check if var_radio1 is "Yes" and enable the button accordingly
-
-
-
-
-    # ========================================Update Function==========================
-    def update_data(self):
-        if self.var_std_id.get()=="" or self.var_std_name.get()=="" or self.var_std_mname.get()=="" or self.var_std_lname.get()=="" or   self.var_div.get()=="" or self.var_gender.get()=="" or self.var_roll.get()=="" or self.var_dob.get()=="" or self.var_email.get()=="" or self.var_address.get()=="" or self.var_teacher.get()=="":
-            messagebox.showerror("Error","Please Fill All Fields are Required!",parent=self.root)
-        else:
-            try:
-                Update=messagebox.askyesno("Update","Do you want to Update this Student Details!",parent=self.root)
-                if Update > 0:
-                    conn = mysql.connector.connect(username='root', password='',host='localhost',database='face_recognition')
-                    mycursor = conn.cursor()
-                    mycursor.execute("update student set Name=%s,mName=%s,lName=%s,Division=%s,Gender=%s,DOB=%s,Address=%s,Roll_No=%s,Email=%s,Teacher_Name=%s,PhotoSample=%s where Student_ID=%s",( 
-                    self.var_std_name.get(),
-                    self.var_std_mname.get(),
-                    self.var_std_lname.get(),
-                    self.var_div.get(),
-                    self.var_gender.get(),
-                    self.var_dob.get(),
-                    self.var_address.get(),
-                    self.var_roll.get(),
-                    self.var_email.get(),
-                    self.var_teacher.get(),
-                    self.var_radio1.get(),
-                    self.var_std_id.get()   
-                    ))
-                else:
-                    if not Update:
-                        return
-                messagebox.showinfo("Success","Successfully Updated!",parent=self.root)
-                conn.commit()
-                self.fetch_data()
-                conn.close()
-                logging.info(f"User updated data for Student ID: {self.var_std_id.get()}")
-            except Exception as es:
-                logging.error(f"Error during data update: {str(es)}")
-                messagebox.showerror("Error",f"Due to: {str(es)}",parent=self.root)
     
-    #==============================Delete Function=========================================
+    #==============Delete Function=============
     def delete_data(self):
         if self.var_std_id.get()=="":
             messagebox.showerror("Error","Student Id Must be Required!",parent=self.root)
@@ -411,9 +324,7 @@ class Student_view:
         self.radiobtn1['state'] = tk.DISABLED
         self.radiobtn2['state'] = tk.NORMAL
     
-    # ===========================Search Data===================
-
-
+    # ===================Search Data==================
     def search_data(self):
         if self.var_search.get() == "" or self.var_searchTX.get() == "Select":
             messagebox.showerror("Error", "Select Combo option and enter entry box", parent=self.root)
@@ -452,82 +363,6 @@ class Student_view:
 
             except Exception as es:
                 messagebox.showerror("Error", f"Due To: {str(es)}", parent=self.root)
-
-
-
-#=====================This part is related to Opencv Camera part=======================
-# ==================================Generate Data set take image=========================
-    def generate_dataset(self):
-        if self.var_std_id.get()=="" or self.var_std_name.get()=="" or self.var_div.get()=="" or self.var_gender.get()=="" or self.var_dob.get()=="" or self.var_email.get()=="" or self.var_address.get()=="" or self.var_roll.get()=="" or self.var_teacher.get()=="":
-            messagebox.showerror("Error","Please Fill All Fields are Required!",parent=self.root)
-        else:
-            try:
-                
-                conn = mysql.connector.connect(username='root', password='',host='localhost',database='face_recognition')
-                mycursor = conn.cursor()
-                mycursor.execute("select * from student")
-                myreslut = mycursor.fetchall()
-                id=0
-                for x in myreslut:
-                    id+=1
-
-                mycursor.execute("update student set Name=%s,mName=%s,lName=%s,Division=%s,Gender=%s,DOB=%s,Address=%s,Roll_No=%s,Email=%s,Teacher_Name=%s,PhotoSample=%s where Student_ID=%s",( 
-                    self.var_std_name.get(),
-                    self.var_std_mname.get(),
-                    self.var_std_lname.get(),
-                    self.var_div.get(),
-                    self.var_gender.get(),
-                    self.var_dob.get(),
-                    self.var_address.get(),
-                    self.var_roll.get(),
-                    self.var_email.get(),
-                    self.var_teacher.get(),
-                    self.var_radio1.get(),
-                    self.var_std_id.get()==id+1   
-                    ))
-                conn.commit()
-                self.fetch_data()
-                self.reset_data()
-                conn.close()
-
-                # ====================part of opencv=======================
-
-                face_classifier = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-
-                def face_croped(img):
-                    # conver gary sacle
-                    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-                    faces = face_classifier.detectMultiScale(gray,1.3,5)
-                    #Scaling factor 1.3
-                    # Minimum naber 5
-                    for (x,y,w,h) in faces:
-                        face_croped=img[y:y+h,x:x+w]
-                        return face_croped
-                cap=cv2.VideoCapture(0)
-                img_id=0
-                while True:
-                    ret,my_frame=cap.read()
-                    if face_croped(my_frame) is not None:
-                        img_id+=1
-                        face=cv2.resize(face_croped(my_frame),(200,200))
-                        face=cv2.cvtColor(face,cv2.COLOR_BGR2GRAY)
-                        file_path="data_img/stdudent."+str(id)+"."+str(img_id)+".jpg"
-                        cv2.imwrite(file_path,face)
-                        cv2.putText(face,str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)        
-                        cv2.imshow("Capture Images",face)
-
-                    if cv2.waitKey(1)==13 or int(img_id)==100:
-                        break
-                cap.release()
-                cv2.destroyAllWindows()
-                messagebox.showinfo("Result","Generating dataset completed!",parent=self.root)
-                logging.info(f"User generated dataset for Student ID: {self.var_std_id.get()}")
-            except Exception as es:
-                logging.error(f"Error during dataset generation: {str(es)}")
-                messagebox.showerror("Error",f"Due to: {str(es)}",parent=self.root) 
-
-
-
 
 def main():
     root = tk.Tk()

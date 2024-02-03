@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import*
 from PIL import Image,ImageTk
-# from train import Train
 from face_recognition import Face_Recognition
 from attendance import Attendance
 import os
@@ -10,6 +9,7 @@ from school_info import Schoolinfo
 from offline_face_recognition import OFFline_face_recognition
 from instruction import Instruction
 from students_only import Student_view
+from changepass import Profile
 
 
 class MainApp:
@@ -82,58 +82,14 @@ class MainApp:
         att_b1 = tk.Button(self.root, text="Attendance", command=self.open_window4, cursor="hand2",font=("tahoma",15,"bold"),bg="#003D60",fg="white")
         att_b1.place(x=1050,y=620,width=221,height=45)
 
-        # data Train
-        # trai_img_btn=Image.open(r"Images_GUI\tra1.jpg")
-        # trai_img_btn=trai_img_btn.resize((160,160),Image.LANCZOS)
-        # self.trai_img1=ImageTk.PhotoImage(trai_img_btn)
-
-        # trai_b1 = Button(bg_img,command=self.open_window7,image=self.trai_img1,cursor="hand2",)
-        # trai_b1.place(x=1110,y=240,width=180,height=180)
-        
-        # trai_b1 = tk.Button(self.root, text="Data Train", command=self.open_window7,cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="#003D60")
-        # trai_b1.place(x=270,y=680,width=221,height=45)
-
-
-        # school info
-        # pho_img_btn=Image.open(r"Images_GUI\schoolinfo.png")
-        # pho_img_btn=pho_img_btn.resize((160,160),Image.LANCZOS)
-        # self.pho_img1=ImageTk.PhotoImage(pho_img_btn)
-
-        # pho_b1 = Button(bg_img,command=self.open_window6,image=self.pho_img1,cursor="hand2")
-        # pho_b1.place(x=480,y=370,width=180,height=180)
+        trai_b1 = tk.Button(self.root, text="Change Password", command=self.open_window7,cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="#003D60")
+        trai_b1.place(x=270,y=680,width=221,height=45)
         
         pho_b1_1 = tk.Button(self.root, text="School Info", command=self.open_window6,cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="#003D60")
         pho_b1_1.place(x=530,y=680,width=221,height=45)
 
-        # developer
-        # dev_img_btn=Image.open(r"Images_GUI\dev.jpg")
-        # dev_img_btn=dev_img_btn.resize((160,160),Image.LANCZOS)
-        # self.dev_img1=ImageTk.PhotoImage(dev_img_btn)
-
-        # dev_b1 = Button(bg_img,command=self.open_window8,image=self.dev_img1,cursor="hand2")
-        # dev_b1.place(x=710,y=370,width=180,height=180)
-
-        # dev_b1 = tk.Button(self.root, text="Developers", command=self.open_window8,font=("tahoma",15,"bold"),bg="white",fg="navyblue")
-        # dev_b1.place(x=712,y=702,width=201,height=45)
-        
-        # Instruction
-        # ins_img_btn=Image.open(r"Images_GUI\learning.png")
-        # ins_img_btn=ins_img_btn.resize((160,160),Image.LANCZOS)
-        # self.ins_img1=ImageTk.PhotoImage(ins_img_btn)
-
-        # ins_b1 = Button(bg_img,command=self.open_window9,image=self.ins_img1,cursor="hand2")
-        # ins_b1.place(x=710,y=370,width=180,height=180)
-
         ins_b1 = tk.Button(self.root, text="Instruction", command=self.open_window9,font=("tahoma",15,"bold"),bg="white",fg="#003D60")
         ins_b1.place(x=790,y=680,width=221,height=45)
-        
-        # Help Support
-        # hlp_img_btn=Image.open(r"Images_GUI\hlp.jpg")
-        # hlp_img_btn=hlp_img_btn.resize((160,160),Image.LANCZOS)
-        # self.hlp_img1=ImageTk.PhotoImage(hlp_img_btn)
-
-        # hlp_b1 = Button(bg_img,command=self.open_window5,image=self.hlp_img1,cursor="hand2",)
-        # hlp_b1.place(x=1110,y=520,width=180,height=180)
 
         hlp_b1_1 = tk.Button(self.root, text="Help Support", command=self.open_window5,cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="#003D60")
         hlp_b1_1.place(x=1050,y=680,width=221,height=45)
@@ -178,17 +134,11 @@ class MainApp:
         self.disable_close_button(self.window6)
         self.app6 = Schoolinfo(self.window6, self.show_main_app)
     
-    # def open_window7(self):
-    #     self.root.withdraw()
-    #     self.window7 = tk.Toplevel(self.root)
-    #     self.disable_close_button(self.window7)
-    #     self.app7 = Train(self.window7, self.show_main_app)
-
-    # def open_window8(self):
-    #     self.root.withdraw()
-    #     self.window8 = tk.Toplevel(self.root)
-    #     self.disable_close_button(self.window8)
-    #     self.app8 = Developer(self.window8, self.show_main_app)
+    def open_window7(self):
+        self.root.withdraw()
+        self.window7 = tk.Toplevel(self.root)
+        self.disable_close_button(self.window7)
+        self.app7 = Profile(self.window7, self.show_main_app)
     
     def open_window9(self):
         self.root.withdraw()

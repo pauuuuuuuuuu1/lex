@@ -7,3 +7,13 @@ INFO:root:User updated data for Student ID: 2
 2024-02-03 17:34:22,000 - INFO - User generated dataset for Student ID: 
 2024-02-03 17:35:50,832 - INFO - User updated data for Student ID: 2
 2024-02-03 17:44:09,155 - INFO - User Login: loyola@gmail.com
+2024-02-03 21:17:50,697 - INFO - User Login: loyola@gmail.com
+2024-02-03 21:22:36,093 - INFO - User Login: loyola@gmail.com
+2024-02-03 21:23:32,868 - INFO - User updated data for Student ID: 2
+2024-02-03 21:23:38,758 - INFO - User updated data for Student ID: 202010640
+2024-02-03 21:23:59,738 - INFO - User Login: loyola@gmail.com
+2024-02-03 22:39:43,752 - INFO - User Login: loyola@gmail.com
+2024-02-04 00:19:46,095 - WARNING - Invalid login attempt detected.
+2024-02-04 00:19:58,236 - WARNING - Invalid login attempt detected.
+2024-02-04 00:20:11,525 - INFO - User Login: loyola@gmail.com
+INFO:root:User Login: loyola@gmail.com
