@@ -1,0 +1,28 @@
+Requirements Install Project 
+-----------------------------
+1. VS Code
+2. Python 64bit 
+3. mysql lite or xammp( create database same as mention in project file )
+4. install pip install Pillow
+5. pip install opencv-python
+6. pip install opencv-contrib-python
+7. pip install numpy
+8. python -m pip install mysql-connector-python
+
+-----------------------------
+Install Libaries as Mention in Files of Project 
+------------------------------------------------
+
+-----------------------------
+how to operate
+------------------------------------------------
+
+1. first you need to register
+2. you need to login
+3. Go to Student Panel
+4. Fill up the form and click no photo example and save
+5. click take a pic and dont click student previous save
+6. after 100 pic click x
+7. Go to Data Train and click Data Train Button and click x
+8. Click Face Recognition and Automatic to see your picture with Details
+9. click attendance if you see your attendance is present
