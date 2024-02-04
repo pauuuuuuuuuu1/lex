@@ -146,7 +146,7 @@ class Login:
             if self.txtuser.get()!="admin@balii.edu.ph" and self.txtpwd.get()!="admin123":
                 messagebox.showerror("Error","Invalid Username and Password!")
             else:
-                open_min=messagebox.askyesno("Yes or No","Access only Admin")
+                open_min=messagebox.askokcancel("Loading...","Please wait...")
                 if open_min>0:
                    self.root.withdraw()
                    self.window1 = tk.Toplevel(self.root)
@@ -163,7 +163,7 @@ class Login:
                 row = mycursor.fetchone()
 
                 if row is not None:
-                    open_min = messagebox.askyesno("Yes or No", "Access only Teachers")
+                    open_min=messagebox.askokcancel("Loading...","Please wait...")
                     if open_min:
                         # If Yes was clicked, then proceed to Main App
                         self.root.withdraw()

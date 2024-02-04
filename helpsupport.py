@@ -10,29 +10,15 @@ class Helpsupport:
         self.root.geometry("1566x768+0+0")
         self.root.title("Face_Recogonition_System")
         self.root.attributes('-fullscreen',True)
-# This part is image labels setting start 
-        # first header image  
-        img=Image.open(r"Images_GUI\biga.jpg")
-        img=img.resize((1566,130),Image.LANCZOS)
-        self.photoimg=ImageTk.PhotoImage(img)
-
-        # set image as lable
-        f_lb1 = Label(self.root,image=self.photoimg)
-        f_lb1.place(x=0,y=0,width=1566,height=130)
-
+        
         # backgorund image 
-        bg1=Image.open(r"Images_GUI\bg4.png")
-        bg1=bg1.resize((1566,768),Image.LANCZOS)
+        bg1=Image.open(r"Images_GUI\help.jpg")
+        bg1=bg1.resize((1566,850),Image.LANCZOS)
         self.photobg1=ImageTk.PhotoImage(bg1)
 
         # set image as lable
         bg_img = Label(self.root,image=self.photobg1)
-        bg_img.place(x=0,y=130,width=1566,height=768)
-
-
-        #title section
-        title_lb1 = Label(bg_img,text="Help Support",font=("verdana",30,"bold"),bg="white",fg="navyblue")
-        title_lb1.place(x=0,y=0,width=1566,height=45)
+        bg_img.place(x=0, y=0, relwidth=1, relheight=1)
 
 
         # Create buttons below the section 
