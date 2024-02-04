@@ -7,7 +7,7 @@ import tkinter as tk
 import re
 
 class Reset:
-    def __init__(self, root, employee_id, show_main_app_callback=None):
+    def __init__(self, root, show_main_app_callback=None):
         self.root = root
         self.root.title("User Profile")
         self.root.geometry("1566x768+0+0")
@@ -25,12 +25,15 @@ class Reset:
         bg_img.place(x=0, y=0, relwidth=1, relheight=1)
 
         self.var_employee_id = StringVar()
-        self.var_employee_id.set(employee_id)
-        
         self.var_old_pwd = StringVar()
         self.var_password = StringVar()
         self.var_confirm_pwd = StringVar()
 
+        id_label = Label(self.root,text="Employee ID:",font=("arial",15),fg="white",bg="#003D60")
+        id_label.place(x=599, y=350)
+
+        self.id_entry = ttk.Entry(self.root, textvariable=self.var_employee_id, font=('times new roman', 15))
+        self.id_entry.place(x=750, y=345, width=210,height=35)
         
         old_pwd_label = Label(self.root,text="Old Password:",font=("arial",15),fg="white",bg="#003D60")
         old_pwd_label.place(x=599, y=400)
@@ -102,10 +105,10 @@ class Reset:
         if hasattr(self, 'show_main_app_callback') and callable(self.show_main_app_callback):
             self.show_main_app_callback()  # Call the callback to show MainApp
 
+    
 def main():
     root = tk.Tk()
-    employee_id = get_logged_in_employee_id()  # Fetch employee_id via your own method
-    app = Reset(root, employee_id)
+    app = Reset(root)
     root.mainloop()
 
 if __name__ == "__main__":
