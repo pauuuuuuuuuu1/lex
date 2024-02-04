@@ -17,63 +17,50 @@ class adminfeat:
 
         self.root.attributes('-fullscreen',True)
 
-       # This part is image labels setting start 
-        # first header image  
-        img=Image.open(r"Images_GUI\biga.jpg")
-        img=img.resize((1566,130),Image.LANCZOS)
-        self.photoimg=ImageTk.PhotoImage(img)
-
-        # set image as lable
-        f_lb1 = Label(self.root,image=self.photoimg)
-        f_lb1.place(x=0,y=0,width=1566,height=130)
-
         # backgorund image 
-        bg1=Image.open(r"Images_GUI\bg3.jpg")
-        bg1=bg1.resize((1566,768),Image.LANCZOS)
+        bg1=Image.open(r"Images_GUI\adminpanel.jpg")
+        bg1=bg1.resize((1566,850),Image.LANCZOS)
         self.photobg1=ImageTk.PhotoImage(bg1)
 
         # set image as lable
         bg_img = Label(self.root,image=self.photobg1)
-        bg_img.place(x=0,y=130,width=1566,height=768)
+        bg_img.place(x=0, y=0, relwidth=1, relheight=1)
 
-
-        #title section
-        title_lb1 = Label(bg_img,text="Login Panel System Using Facial Recognition",font=("verdana",30,"bold"),bg="white",fg="navyblue")
-        title_lb1.place(x=0,y=0,width=1566,height=45)
-
-
-       # Create buttons below the section 
-        # ------------------------------------------------------------------------------------------------------------------- 
         # student
-        std_img_btn=Image.open(r"Images_GUI\student.png")
+        std_img_btn=Image.open(r"Images_GUI\user.png")
         std_img_btn=std_img_btn.resize((240,240),Image.LANCZOS)
         self.std_img1=ImageTk.PhotoImage(std_img_btn)
 
         std_b1 = Button(bg_img,command=self.open_windows1,image=self.std_img1,cursor="hand2")
-        std_b1.place(x=400,y=200,width=280,height=280)
+        std_b1.place(x=260,y=360,width=280,height=280)
 
-        std_b1 = tk.Button(self.root,command=self.open_windows1, text="Panel Info",cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="navyblue")
-        std_b1.place(x=402,y=612,width=281,height=45)
+        std_b1 = tk.Button(self.root,command=self.open_windows1, text="STUDENTS",cursor="hand2",font=("arial",15,"bold"), fg="white", bg="#003D60")
+        std_b1.place(x=262,y=645,width=281,height=45)
 
-
-        
-        
-        # Face Recog
-        det_img_btn=Image.open(r"Images_GUI\admin.jpg")
+        # teacher
+        det_img_btn=Image.open(r"Images_GUI\teacher.png")
         det_img_btn=det_img_btn.resize((240,240),Image.LANCZOS)
         self.det_img1=ImageTk.PhotoImage(det_img_btn)
 
         det_b1 = Button(bg_img,command=self.open_windows3,image=self.det_img1,cursor="hand2",)
-        det_b1.place(x=1100,y=200,width=280,height=280)
-        det_b1 = tk.Button(self.root, text="Panel",command=self.open_windows3,cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="navyblue")
-        det_b1.place(x=1102,y=612,width=281,height=45)
-
-        self.return_button = tk.Button(self.root, text="Logout", command=show_main_app_callback, font=("verdana",12,"bold"),fg="white", bg="navyblue")
-        self.return_button.grid(row=0,column=1,padx=15,pady=810,sticky=W)
+        det_b1.place(x=638,y=360,width=280,height=280)
         
-        return_button = Button(self.root, text="ACTIVITY LOGS", command=self.open_windows4,
-                               font=("verdana", 12, "bold"), fg="white", bg="#003D60")
-        return_button.grid(row=0, column=1, padx=1370, pady=820, sticky=W)
+        det_b1 = tk.Button(self.root, text="TEACHERS",command=self.open_windows3,cursor="hand2",font=("arial",15,"bold"), fg="white", bg="#003D60")
+        det_b1.place(x=640,y=645,width=281,height=45)
+        
+        # activity logs
+        logs_img_btn=Image.open(r"Images_GUI\logs.png")
+        logs_img_btn=logs_img_btn.resize((240,240),Image.LANCZOS)
+        self.logs_img1=ImageTk.PhotoImage(logs_img_btn)
+
+        logs_b1 = Button(bg_img,command=self.open_windows4,image=self.logs_img1,cursor="hand2",)
+        logs_b1.place(x=998,y=360,width=280,height=280)
+        
+        return_button = Button(self.root, text="ACTIVITY LOGS", command=self.open_windows4,font=("arial", 15, "bold"), fg="white", bg="#003D60")
+        return_button.place(x=1000,y=645,width=281,height=45)
+        
+        self.return_button = tk.Button(self.root, text="LOGOUT", command=show_main_app_callback, font=("arial",15,"bold"),bg="#003D60",fg="white")
+        self.return_button.grid(row=0,column=1,padx=1420,pady=810,sticky=E)
         
         
     def return_to_main_app(self):

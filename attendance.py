@@ -100,35 +100,35 @@ class Attendance:
         studentId_label = Label(right_frame,text="ID:",font=("verdana",12,"bold"),fg="navyblue",bg="white")
         studentId_label.grid(row=0,column=0,padx=5,pady=5,sticky=W)
 
-        studentId_entry = ttk.Entry(right_frame,textvariable=self.var_id,width=15,font=("verdana",12,"bold"))
+        studentId_entry = ttk.Entry(right_frame,textvariable=self.var_id,width=15,font=("verdana",12,"bold"), state=DISABLED)
         studentId_entry.grid(row=0,column=1,padx=5,pady=5,sticky=W)
 
         #Studnet Name
         student_name_label = Label(right_frame,text="Name:",font=("verdana",12,"bold"),fg="navyblue",bg="white")
         student_name_label.grid(row=1,column=0,padx=5,pady=5,sticky=W)
 
-        student_name_entry = ttk.Entry(right_frame,textvariable=self.var_name,width=15,font=("verdana",12,"bold"))
+        student_name_entry = ttk.Entry(right_frame,textvariable=self.var_name,width=15,font=("verdana",12,"bold"),state=DISABLED)
         student_name_entry.grid(row=1,column=1,padx=5,pady=5,sticky=W)
 
         # Department
         dep_label = Label(right_frame,text="Grade - Sec:",font=("verdana",12,"bold"),fg="navyblue",bg="white")
         dep_label.grid(row=2,column=0,padx=5,pady=5,sticky=W)
 
-        dep_entry = ttk.Entry(right_frame,textvariable=self.var_email,width=15,font=("verdana",12,"bold"))
+        dep_entry = ttk.Entry(right_frame,textvariable=self.var_email,width=15,font=("verdana",12,"bold"),state=DISABLED)
         dep_entry.grid(row=2,column=1,padx=5,pady=5,sticky=W)
 
         #time
         time_label = Label(right_frame,text="Time:",font=("verdana",12,"bold"),fg="navyblue",bg="white")
         time_label.grid(row=1,column=2,padx=5,pady=5,sticky=W)
 
-        time_entry = ttk.Entry(right_frame,textvariable=self.var_time,width=15,font=("verdana",12,"bold"))
+        time_entry = ttk.Entry(right_frame,textvariable=self.var_time,width=15,font=("verdana",12,"bold"),state=DISABLED)
         time_entry.grid(row=1,column=3,padx=5,pady=5,sticky=W)
 
         #Date 
         date_label = Label(right_frame,text="Date:",font=("verdana",12,"bold"),fg="navyblue",bg="white")
         date_label.grid(row=0,column=2,padx=5,pady=5,sticky=W)
 
-        date_entry = Entry(right_frame,textvariable=self.var_date,width=15,font=("verdana",12,"bold"),bd=2, relief=GROOVE)
+        date_entry = Entry(right_frame,textvariable=self.var_date,width=15,font=("verdana",12,"bold"),bd=2, relief=GROOVE,state=DISABLED)
         date_entry.insert(0,"yyyy-mm-dd")
         date_entry.bind("<1>", pick_date)
         date_entry.grid(row=0,column=3,padx=5,pady=10,sticky=W)
@@ -137,7 +137,7 @@ class Attendance:
         student_attend_label = Label(right_frame,text="Attend-status:",font=("verdana",12,"bold"),fg="navyblue",bg="white")
         student_attend_label.grid(row=2,column=2,padx=5,pady=5,sticky=W)
 
-        attend_combo=ttk.Combobox(right_frame,textvariable=self.var_attend,width=13,font=("verdana",12,"bold"),state="readonly")
+        attend_combo=ttk.Combobox(right_frame,textvariable=self.var_attend,width=13,font=("verdana",12,"bold"),state=DISABLED)
         attend_combo["values"]=("Status","Present","Absent")
         attend_combo.current(0)
         attend_combo.grid(row=2,column=3,padx=5,pady=5,sticky=W)

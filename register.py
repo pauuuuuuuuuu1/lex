@@ -13,6 +13,7 @@ class Register:
         self.root.title("Register")
         self.root.geometry("1366x768+0+0")
         self.root.attributes('-fullscreen',True)
+        
 
         # ============ Variables =================
         self.var_employee_id = StringVar()
@@ -27,8 +28,7 @@ class Register:
         self.var_check=IntVar()
 
         bg1=Image.open(r"Images_GUI\regcover.png")
-        # bg1=bg1.resize((1566,865),Image.LANCZOS)
-        bg1=bg1.resize((1355,755),Image.LANCZOS)
+        bg1=bg1.resize((1566,850),Image.LANCZOS)
         self.photobg1=ImageTk.PhotoImage(bg1)
 
         # set image as lable
@@ -36,80 +36,72 @@ class Register:
         bg_img.place(x=0, y=0, relwidth=1, relheight=1)
 
         frame= Frame(self.root,bg="lightgray")
-        frame.place(x=400,y=140,width=600,height=600)
-        # frame.place(x=560,y=80,width=950,height=650)
-        
-
-        # img1=Image.open(r"Images_GUI\reg1.png")
-        # img1=img1.resize((450,100),Image.LANCZOS)
-        # self.photoimage1=ImageTk.PhotoImage(img1)
-        # lb1img1 = Label(image=self.photoimage1,bg="#F2F2F2")
-        # lb1img1.place(x=300,y=100, width=500,height=100)
+        frame.place(x=510,y=230,width=600,height=500)
 
         # employee ID
-        employee_label =lb1= Label(frame,text="Employee ID:",font=("Arial",13,"bold"),fg="#002B53",bg="#F2F2F2")
-        employee_label.place(x=20,y=80)
+        employee_label =lb1= Label(frame,text="Employee ID:",font=("Arial",15,"bold"),fg="#002B53",bg="lightgray")
+        employee_label.place(x=20,y=50)
 
-        self.employee_entry=ttk.Entry(frame,textvariable=self.var_employee_id,font=("Arial",12))
-        self.employee_entry.place(x=150,y=73,width=200,height=30)
+        self.employee_entry=ttk.Entry(frame,textvariable=self.var_employee_id,font=("Arial",15))
+        self.employee_entry.place(x=165,y=46,width=200,height=35)
         
         # first name
-        fname =lb1= Label(frame,text="First Name:",font=("times new roman",15,"bold"),fg="#002B53",bg="#F2F2F2")
+        fname =lb1= Label(frame,text="First Name:",font=("arial",15,"bold"),fg="#002B53",bg="lightgray")
         fname.place(x=20,y=130)
 
-        self.txtuser=ttk.Entry(frame,textvariable=self.var_fname,font=("times new roman",12))
+        self.txtuser=ttk.Entry(frame,textvariable=self.var_fname,font=("arial",12))
         self.txtuser.place(x=20,y=165,width=210,height=35)
         
         # middle name
-        mname =lb1= Label(frame,text="M.I.",font=("times new roman",15,"bold"),fg="#002B53",bg="#F2F2F2")
+        mname =lb1= Label(frame,text="M.I.",font=("arial",15,"bold"),fg="#002B53",bg="lightgray")
         mname.place(x=240,y=130)
 
-        self.txtmiddlename=ttk.Entry(frame,textvariable=self.var_mname,font=("times new roman",15,"bold"))
+        self.txtmiddlename=ttk.Entry(frame,textvariable=self.var_mname,font=("arial",15,"bold"))
         self.txtmiddlename.place(x=240,y=165,width=120,height=35)
 
         # last name
-        lname =lb1= Label(frame,text="Last Name:",font=("times new roman",15,"bold"),fg="#002B53",bg="#F2F2F2")
+        lname =lb1= Label(frame,text="Last Name:",font=("arial",15,"bold"),fg="#002B53",bg="lightgray")
         lname.place(x=370,y=130)
 
-        self.txtpwd=ttk.Entry(frame,textvariable=self.var_lname,font=("times new roman",15,"bold"))
+        self.txtpwd=ttk.Entry(frame,textvariable=self.var_lname,font=("arial",15,"bold"))
         self.txtpwd.place(x=370,y=165,width=210,height=35)
 
         # contact no.
-        cnum =lb1= Label(frame,text="Contact No.:",font=("times new roman",15,"bold"),fg="#002B53",bg="#F2F2F2")
+        cnum =lb1= Label(frame,text="Contact No.:",font=("arial",15,"bold"),fg="#002B53",bg="lightgray")
         cnum.place(x=20,y=220)
 
-        self.txtuser=ttk.Entry(frame,textvariable=self.var_cnum,font=("times new roman",15,"bold"))
-        self.txtuser.place(x=140,y=215,width=160,height=35)
+        self.txtuser=ttk.Entry(frame,textvariable=self.var_cnum,font=("arial",15,"bold"))
+        self.txtuser.place(x=150,y=215,width=160,height=35)
 
         # gender
-        gender =lb1= Label(frame,text="Gender:",font=("times new roman",15,"bold"),fg="#002B53",bg="#F2F2F2")
+        gender =lb1= Label(frame,text="Gender:",font=("arial",15,"bold"),fg="#002B53",bg="lightgray")
         gender.place(x=320,y=220)
 
-        self.gender_entry = ttk.Combobox(frame, textvariable=self.var_gender, font=("times new roman", 15, "bold"), state="readonly")
+        self.gender_entry = ttk.Combobox(frame, textvariable=self.var_gender, font=("arial", 15), state="readonly")
         self.gender_entry["values"] = ("Male", "Female")
-        self.gender_entry.place(x=410,y=215,width=110,height=35)
+        self.gender_entry.place(x=410,y=215,width=165,height=35)
 
         # email
-        email =lb1= Label(frame,text="Email:",font=("times new roman",15,"bold"),fg="#002B53",bg="#F2F2F2")
+        email =lb1= Label(frame,text="Email:",font=("arial",15,"bold"),fg="#002B53",bg="lightgray")
         email.place(x=20,y=285)
 
-        self.txtemail=ttk.Entry(frame,textvariable=self.var_email,font=("times new roman",12))
-        self.txtemail.place(x=85,y=280,width=225,height=35)
+        self.txtemail=ttk.Entry(frame,textvariable=self.var_email,font=("arial",12))
+        self.txtemail.place(x=85,y=280,width=215,height=35)
 
         # department
-        dep_label =lb1= Label(frame,text="Department:",font=("times new roman",15,"bold"),fg="#002B53",bg="#F2F2F2")
-        dep_label.place(x=315,y=285)
+        dep_label =lb1= Label(frame,text="Department:",font=("arial",15,"bold"),fg="#002B53",bg="lightgray")
+        dep_label.place(x=310,y=285)
 
-        self.dep_entry = ttk.Combobox(frame, textvariable=self.var_department, font=("times new roman", 12), state="readonly")
+        self.dep_entry = ttk.Combobox(frame, textvariable=self.var_department, font=("arial", 15), state="readonly")
         self.dep_entry["values"] = ("Kinder", "Elementary", "High School")
         self.dep_entry.place(x=435,y=280,width=140,height=35)
 
         # default password
-        password =lb1= Label(frame,text="Default Password:",font=("times new roman",15,"bold"),fg="#002B53",bg="#F2F2F2")
-        password.place(x=20,y=320)
+        password =lb1= Label(frame,text="Default Password:",font=("arial",15,"bold"),fg="#002B53",bg="lightgray")
+        password.place(x=20,y=350)
 
-        self.txtpassword=ttk.Entry(frame,textvariable=self.var_password,font=("times new roman",12))
-        self.txtpassword.place(x=85,y=360,width=225,height=35)
+        self.txtpassword=ttk.Entry(frame,textvariable=self.var_password,font=("arial",15))
+        self.txtpassword.place(x=210,y=345,width=225,height=35)
 
         self.terms_text = (            
             "Terms and Conditions\n"
@@ -143,14 +135,14 @@ class Register:
 
         )
         
-        essay_widget = Text(wrap="word", width=180, height=30,  font=("verdana", 12), fg="black")
+        essay_widget = Text(wrap="word", width=180, height=30,  font=("arial", 15), fg="black")
         essay_widget.insert("135.5", self.terms_text)
 
         self.terms_popup = tk.Toplevel(root)
         self.terms_popup.title("Terms and Conditions")
         self.terms_popup.withdraw()  # Hide the popup initially
 
-        self.terms_text_widget = tk.Text(self.terms_popup, wrap=tk.WORD, height=20, width=70, font=("verdana",13,"bold"),fg="black",highlightthickness=-1)
+        self.terms_text_widget = tk.Text(self.terms_popup, wrap=tk.WORD, height=20, width=70, font=("arial",15),fg="black",highlightthickness=-1)
         self.terms_text_widget.pack(padx=10, pady=10)
         self.terms_text_widget.insert(tk.END, self.terms_text)
 
@@ -161,16 +153,16 @@ class Register:
         self.terms_popup.protocol("WM_DELETE_WINDOW", self.hide_terms)
 
         self.show_button = tk.Button(frame, text="Show Terms", command=self.show_terms,font=("times new roman",15,"bold"),bd=0,relief=RIDGE,fg="#fff",bg="#002B53",activeforeground="white",activebackground="#007ACC")
-        self.show_button.place(x=103,y=480,width=270)
+        self.show_button.place(x=160,y=400,width=270)
 
    
 
         # Creating Button Register
         loginbtn=Button(frame,command=self.reg,text="Register",font=("times new roman",15,"bold"),bd=0,relief=RIDGE,fg="#fff",bg="#002B53",activeforeground="white",activebackground="#007ACC")
-        loginbtn.place(x=103,y=520,width=270,height=35)
+        loginbtn.place(x=160,y=450,width=270,height=35)
 
 
-        return_button = tk.Button(self.root, text="Return to MainApp", command=show_main_app_callback, font=("verdana",12,"bold"),fg="white", bg="navyblue")
+        return_button = tk.Button(self.root, text="Return to Dashboard", command=show_main_app_callback, font=("arial",12,"bold"),fg="white", bg="#003D60")
         return_button.grid(row=0,column=1,padx=15,pady=820,sticky=W)
 
     def disable_close_button(self, window): 
@@ -178,8 +170,7 @@ class Register:
 
 
     def show_main_app(self):
-        self.root.deiconify()  # Show the main window
-        # Destroy child windows when returning to MainApp
+        self.root.deiconify()
         if hasattr(self, 'window1'):
             self.window1.destroy()
 
@@ -256,13 +247,11 @@ class Register:
                 self.var_password.get(),
             )
 
-            # Call execute on your cursor to run the INSERT command
             mycursor.execute(insert_query, insert_values)
-            conn.commit()    # Remember to commit the changes
+            conn.commit()
 
             messagebox.showinfo("Success", "Registration successful.")
 
-# Close the current window and open a new one
             self.root.withdraw()
             self.window1 = tk.Toplevel(self.root)
             self.disable_close_button(self.window1)
@@ -272,9 +261,9 @@ class Register:
             messagebox.showerror("Error", f"Due to: {str(es)}", parent=self.root)
             
     def return_to_main_app(self):
-        self.master.withdraw()  # Hide the child window
+        self.master.withdraw() 
         if hasattr(self, 'show_main_app_callback') and callable(self.show_main_app_callback):
-            self.show_main_app_callback()  # Call the callback to show MainApp
+            self.show_main_app_callback()  
 
 def main():
     root = tk.Tk()

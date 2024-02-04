@@ -13,35 +13,23 @@ class LogViewerApp:
 
         self.root.attributes('-fullscreen', True)
 
-        img=Image.open(r"Images_GUI\biga.jpg")
-        img=img.resize((1566,130),Image.LANCZOS)
-        self.photoimg=ImageTk.PhotoImage(img)
-
-        # set image as lable
-        f_lb1 = Label(self.root,image=self.photoimg)
-        f_lb1.place(x=0,y=0,width=1566,height=130)
-
         # backgorund image 
-        bg1=Image.open(r"Images_GUI\bg3.jpg")
-        bg1=bg1.resize((1566,768),Image.LANCZOS)
+        bg1=Image.open(r"Images_GUI\activity.jpg")
+        bg1=bg1.resize((1566,850),Image.LANCZOS)
         self.photobg1=ImageTk.PhotoImage(bg1)
 
         # set image as lable
         bg_img = Label(self.root,image=self.photobg1)
-        bg_img.place(x=0,y=130,width=1566,height=768)
-
-
-        #title section
-        title_lb1 = Label(bg_img,text="Monitoring and Logging System",font=("verdana",30,"bold"),bg="white",fg="navyblue")
-        title_lb1.place(x=0,y=0,width=1566,height=45)
-
+        bg_img.place(x=0, y=0, relwidth=1, relheight=1)
+        
+        
         main_frame = Frame(bg_img,bd=2,bg="white") #bd mean border 
-        main_frame.place(x=25,y=55,width=1500,height=610)
+        main_frame.place(x=25,y=250,width=1500,height=550)
 
 
         
         # Right Label Frame 
-        right_frame = LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Student Attendance",font=("verdana",12,"bold"),fg="navyblue")
+        right_frame = LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Activity Logs",font=("verdana",12,"bold"),fg="navyblue")
         right_frame.place(x=10,y=10,width=1470,height=580)
         # Create a frame to hold the components
 
@@ -66,9 +54,8 @@ class LogViewerApp:
 
         self.load_logs()
         
-        return_button = Button(self.root, text="LOGOUT", command=show_main_app_callback,
-                               font=("verdana", 12, "bold"), fg="white", bg="#003D60")
-        return_button.grid(row=0, column=1, padx=15, pady=820, sticky=W)
+        self.return_button = tk.Button(self.root, text="BACK", command=show_main_app_callback, font=("verdana",12,"bold"),fg="white", bg="#003D60")
+        self.return_button.grid(row=0,column=1,padx=1460,pady=815,sticky=E)
 
     def return_to_main_app(self):
         self.root.withdraw()

@@ -53,14 +53,10 @@ class AdminPanel:
         # Creating Frame  
         main_frame = Frame(bg_img,bd=2,bg="lightgray") #bd mean border 
         main_frame.place(x=15,y=165,width=1500,height=640)
-        
-           
-        return_button = Button(self.root, text="LOGOUT", command=show_main_app_callback,
-                               font=("verdana", 12, "bold"), fg="white", bg="#003D60")
-        return_button.grid(row=0, column=1, padx=15, pady=820, sticky=W)
-        
 
-
+        self.return_button = tk.Button(self.root, text="BACK", command=show_main_app_callback, font=("verdana",12,"bold"),fg="white", bg="#003D60")
+        self.return_button.grid(row=0,column=1,padx=1460,pady=815,sticky=E)
+        
         left_frame = LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Teacher Information",font=("verdana",12,"bold"),fg="navyblue")
         left_frame.place(x=10,y=10,width=1470,height=610)
 
@@ -111,40 +107,6 @@ class AdminPanel:
         self.teacher_search_entry.bind("<FocusIn>", self.ons_entry_click)
         self.teacher_search_entry.bind("<FocusOut>", self.ons_focus_out)
         
-        # # first name
-        # self.teacher_fname_entry_label = Label(teacher_table_frame,text="First Name:",font=("arial",11,"bold"),fg="navyblue",bg="#FAF9F6")
-        # self.teacher_fname_entry_label.place(x=15,y=50,)
-        
-        # self.fname_entry = Entry(teacher_table_frame, textvariable=self.var_fname, font=("arial", 10), bd=2, relief=GROOVE)
-        # self.fname_entry.place(x=140,y=50, width=200)
-        
-        # # middle name
-        # self.teacher_mname_entry_label = Label(teacher_table_frame,text="Middle Name:",font=("arial",11,"bold"),fg="navyblue",bg="#FAF9F6")
-        # self.teacher_mname_entry_label.place(x=15,y=90)
-        
-        # self.mname_entry = Entry(teacher_table_frame, textvariable=self.var_mname, font=("arial", 10), bd=2, relief=GROOVE)
-        # self.mname_entry.place(x=140,y=90, width=200)
-        
-        # # last name
-        # self.teacher_lname_entry_label = Label(teacher_table_frame,text="Last Name:",font=("arial",11,"bold"),fg="navyblue",bg="#FAF9F6")
-        # self.teacher_lname_entry_label.place(x=15,y=115)
-        
-        # self.lname_entry = Entry(teacher_table_frame, textvariable=self.var_lname, font=("arial", 10), bd=2, relief=GROOVE)
-        # self.lname_entry.place(x=140,y=115, width=200)
-        
-        # # email
-        # self.email_entry_label = Label(teacher_table_frame,text="Email:",font=("arial",11,"bold"),fg="navyblue",bg="#FAF9F6")
-        # self.email_entry_label.place(x=500,y=90)
-        
-        # self.email_entry = Entry(teacher_table_frame, textvariable=self.var_email, font=("verdana", 11), bd=2, relief=GROOVE)
-        # self.email_entry.place(x=600,y=90, width=200)
-        
-        # contact number
-        # self.cnum_entry = Entry(teacher_table_frame, textvariable=self.var_cnum, font=("verdana", 11), bd=2, relief=GROOVE)
-        # self.cnum_entry.grid(row=2,column=2,padx=15,pady=15,sticky=W)
-        
-        # end of update table
-        
 
         self.teacher_search_btn = Button(left_frame, text="Register", command=self.open_windows2, font=("verdana", 12, "bold"), fg="white", bg="#003D60")
         self.teacher_search_btn.place(x=55, y=540, width=155, height=40)
@@ -181,7 +143,7 @@ class AdminPanel:
         style.configure('Treeview', font=('Arial', 10), rowheight=25)
         style.configure('Treeview.Heading', font=('Arial', 12, "bold"), rowheight=25)
 
-        self.teacher_table = ttk.Treeview(left_table_frame, style='Treeview', column=("id","employee_id","fname","mname","lname","cnum","email","department","ssq","sa","pwd"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+        self.teacher_table = ttk.Treeview(left_table_frame, style='Treeview', column=("id","employee_id","fname","mname","lname","cnum","email","department","password"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
 
         scroll_x.pack(side=BOTTOM,fill=X)
         scroll_y.pack(side=RIGHT,fill=Y)
@@ -196,9 +158,7 @@ class AdminPanel:
         self.teacher_table.heading("cnum",text="Number")
         self.teacher_table.heading("email",text="Email")
         self.teacher_table.heading("department",text="Department")
-        self.teacher_table.heading("ssq",text="Security Question")
-        self.teacher_table.heading("sa",text="Answer")
-        self.teacher_table.heading("pwd",text="Password")
+        self.teacher_table.heading("password",text="Password")
         self.teacher_table["show"]="headings"
 
 
@@ -211,9 +171,7 @@ class AdminPanel:
         self.teacher_table.column("cnum",width=120, anchor="center")
         self.teacher_table.column("email",width=130, anchor="center")
         self.teacher_table.column("department",width=130, anchor="center")
-        self.teacher_table.column("ssq",width=130, anchor="center")
-        self.teacher_table.column("sa",width=100, anchor="center")
-        self.teacher_table.column("pwd",width=70, anchor="center")
+        self.teacher_table.column("password",width=70, anchor="center")
 
     
 
@@ -283,7 +241,6 @@ class AdminPanel:
             for row in data:
                 row = list(row)  # Convert the row to a list to make it mutable
                 row[-1] = "********"   # Replace the password with '*' assuming 'pwd' is the last column
-                row[-2] = "***"
 
                 self.teacher_table.insert("", END, values=row)
             conn.commit()

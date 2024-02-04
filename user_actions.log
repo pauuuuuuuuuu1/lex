@@ -51,3 +51,24 @@ WARNING:root:Invalid login attempt detected.
 WARNING:root:Invalid login attempt detected.
 INFO:root:User Login: loyola@gmail.com
 INFO:root:User Login: loyola@gmail.com
+INFO:root:User Login: loyola@gmail.com
+2024-02-04 18:22:02,531 - INFO - User Login: loyola@gmail.com
+2024-02-04 18:39:18,678 - INFO - User Login: loyola@gmail.com
+2024-02-04 19:49:53,979 - INFO - User deleted data for Student ID: 1
+2024-02-04 19:49:59,452 - INFO - User deleted data for Student ID: 202010640
+2024-02-04 19:50:53,639 - INFO - User added data for Student ID: 202010640
+2024-02-04 19:51:11,539 - INFO - User generated dataset for Student ID: 
+2024-02-04 19:51:37,539 - INFO - User Login: loyola@gmail.com
+2024-02-04 20:08:07,352 - INFO - User added data for Student ID: 1
+2024-02-04 20:08:19,992 - INFO - User generated dataset for Student ID: 
+2024-02-04 20:08:57,892 - INFO - User deleted data for Student ID: 1
+2024-02-04 20:09:44,841 - INFO - User added data for Student ID: 1
+2024-02-04 20:09:58,902 - INFO - User generated dataset for Student ID: 
+2024-02-04 20:10:25,483 - INFO - User Login: loyola@gmail.com
+2024-02-04 20:11:48,008 - INFO - User Login: loyola@gmail.com
+2024-02-04 22:43:37,840 - WARNING - Invalid login attempt detected.
+2024-02-04 22:49:41,751 - WARNING - Invalid login attempt detected.
+2024-02-04 22:49:46,465 - WARNING - Invalid login attempt detected.
+2024-02-04 22:49:53,910 - WARNING - Invalid login attempt detected.
+2024-02-04 22:50:11,420 - INFO - User decided not to proceed to MainApp.
+2024-02-04 22:50:40,638 - INFO - User Login: loyola@gmail.com

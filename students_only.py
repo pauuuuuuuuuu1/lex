@@ -55,6 +55,17 @@ class Student_view:
         self.var_email=StringVar()
         self.var_address=StringVar()
         self.var_teacher=StringVar()
+
+        # def grab_date():
+        #     student_dob_entry = cal.get_date()
+        #     print("Selected Date:", student_dob_entry)
+        #     # Add your logic to handle the selected date as needed
+        #     date_window.destroy()
+
+     
+
+        # Assuming you have a delete_window somewhere else in your code
+        # and you want to destroy it, you can add a function like this:
             
 
     # This part is image labels setting start 
@@ -83,28 +94,22 @@ class Student_view:
         right_frame.place(x=10,y=10,width=1470,height=580)
 
         #Searching System in Right Label Frame 
-        search_frame = LabelFrame(right_frame,bd=2,bg="#FAF9F6",relief=RIDGE,text="Search System",font=("verdana",12,"bold"),fg="navyblue")
+        search_frame = LabelFrame(right_frame,bd=2,bg="#FAF9F6",relief=RIDGE,text="Information",font=("verdana",12,"bold"),fg="navyblue")
         search_frame.place(x=10,y=5,width=1450,height=80)
 
-        #Search
-        search_label = Label(search_frame,text="Search:",font=("verdana",12,"bold"),fg="navyblue",bg="white")
-        search_label.grid(row=0,column=0,padx=5,pady=5,sticky=W)
-        self.var_searchTX=StringVar()
-        #combo box 
-        search_combo=ttk.Combobox(search_frame,textvariable=self.var_searchTX,width=6,font=("verdana",12,"bold"),state="readonly")
-        search_combo["values"]=("Select","LRN","Name","Section")
-        search_combo.current(0)
-        search_combo.grid(row=0,column=1,padx=5,pady=15,sticky=W)
+        #search
+        self.search_entry = Entry(search_frame,width=30,font=("arial",14))
+        self.search_entry.grid(row=0,column=2,padx=15,pady=10,sticky=W)
+        
+        
+        self.search_entry.bind("<KeyRelease>", lambda event: self.search_data())
+        self.search_entry.insert(0, "Search ...")
+        self.search_entry.bind("<FocusIn>", self.ons_entry_click)
+        self.search_entry.bind("<FocusOut>", self.ons_focus_out)
 
-        self.var_search=StringVar()
-        search_entry = ttk.Entry(search_frame,textvariable=self.var_search,width=20,font=("verdana",12,"bold"))
-        search_entry.grid(row=0,column=2,padx=5,pady=5,sticky=W)
-
-        search_btn=Button(search_frame,command=self.search_data,text="Search",width=9,font=("verdana",12,"bold"),fg="white",bg="#003D60")
-        search_btn.grid(row=0,column=3,padx=5,pady=10,sticky=W)
 
         showAll_btn=Button(search_frame,command=self.fetch_data,text="Show All",width=8,font=("verdana",12,"bold"),fg="white",bg="#003D60")
-        showAll_btn.grid(row=0,column=4,padx=5,pady=10,sticky=W)
+        showAll_btn.grid(row=0,column=4,padx=10,pady=10,sticky=W)
 
         generate_csv_btn = Button(self.root, command=self.exportCsvRight, text="CSV", width=8, font=("verdana", 12, "bold"), fg="white", bg="#003D60")
         generate_csv_btn.place(x=50, y=755)
@@ -157,6 +162,7 @@ class Student_view:
 
 
         self.student_table.pack(fill=BOTH,expand=1)
+        self.student_table.bind("<ButtonRelease>",self.get_student_cursor)
         self.student_table.bind("<ButtonRelease>",self.get_cursor)
         self.fetch_data()
 
@@ -164,6 +170,28 @@ class Student_view:
    
 
 # ==================Function Decleration==============================
+    def search_student_data(self):
+        search_query = self.search_entry.get()
+        self.autocomplete_student(search_query)
+
+    def autocomplete_student(self, search_query):
+        conn = mysql.connector.connect(user='root', password='', host='localhost', database='face_recognition')
+        mycursor = conn.cursor()
+        mycursor.execute("SELECT Name, Roll_No FROM regteach WHERE Name LIKE %s OR Roll_No LIKE %s", ('%' + search_query + '%', '%' + search_query + '%'))
+        data = mycursor.fetchall()
+        conn.close()
+
+
+    def ons_entry_click(self, event):
+        if self.search_entry.get() == "Search ...":
+            self.search_entry.delete(0, "end")
+            self.search_entry.config(fg='black')  # Change text color to black
+
+    def ons_focus_out(self, event):
+        if not self.search_entry.get():
+            self.search_entry.insert(0, "Search ...")
+            self.search_entry.config(fg='grey')
+
 
     def disable_button(self):
         self.take_photo_btn["state"] = tk.DISABLED
@@ -176,6 +204,7 @@ class Student_view:
         self.root.withdraw()
         if hasattr(self, 'show_main_app_callback') and callable(self.show_main_app_callback):
             self.show_main_app_callback()
+    
 
     
     def exportCsvRight(self):
@@ -222,43 +251,70 @@ class Student_view:
     
     logging.basicConfig(filename='user_actions.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+    def add_data(self):
+       
+        if self.var_std_id.get()=="" or self.var_std_name.get()=="" or self.var_std_mname.get()=="" or self.var_std_lname.get()=="" or self.var_div.get()=="" or self.var_gender.get()=="" or self.var_roll.get()=="" or self.var_dob.get()=="" or self.var_email.get()=="" or self.var_address.get()=="" or self.var_teacher.get()=="":
+            
+            messagebox.showerror("Error","Please Fill All Fields are Required!",parent=self.root)
+        else:
+            try:
+                conn = mysql.connector.connect(username='root', password='',host='localhost',database='face_recognition')
+                mycursor = conn.cursor()
+                mycursor.execute("insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
+                self.var_std_id.get(),
+                self.var_std_name.get(),
+                self.var_std_mname.get(),
+                self.var_std_lname.get(),
+                self.var_div.get(),
+                self.var_gender.get(),
+                self.var_dob.get(),
+                self.var_address.get(),
+                self.var_roll.get(),
+                self.var_email.get(),
+                self.var_teacher.get(),
+                self.var_radio1.get()
+                ))
+                
+                
+                
+                conn.commit()
+                self.fetch_data()
+                conn.close()
+                messagebox.showinfo("Success","All Records are Saved!",parent=self.root)
+                logging.info(f"User added data for Student ID: {self.var_std_id.get()}")
+            except Exception as es:
+                logging.error(f"Error during data addition: {str(es)}")
+                messagebox.showerror("Error",f"Due to: {str(es)}",parent=self.root)
+
 
     # ===========================Fetch data form database to table ================================
 
     def fetch_data(self):
-        conn = mysql.connector.connect(username='root', password='', host='localhost', database='face_recognition')
+        conn = mysql.connector.connect(username='root', password='',host='localhost',database='face_recognition')
         mycursor = conn.cursor()
 
-        query = """
-        SELECT student.*, CONCAT(regteach.fname, ' ', regteach.lname) AS Teacher_Name
-        FROM student
-        INNER JOIN regteach ON CONCAT(regteach.fname, ' ', regteach.lname) = student.Teacher_Name
-        WHERE CONCAT(regteach.fname, ' ', regteach.lname) IN (
-        SELECT student.Teacher_Name
-        FROM student
-        GROUP BY student.Teacher_Name
-        HAVING COUNT(*) > 1
-        )
-                """
+        mycursor.execute("select * from student")
+        data=mycursor.fetchall()
 
-        # query = "Select * FROM student"
+        if len(data)!= 0:
 
-            
-        mycursor.execute(query)
-        data = mycursor.fetchall()
-        
-        if len(data) != 0:
             self.student_table.delete(*self.student_table.get_children())
+
             for i in data:
                 self.student_table.insert("", END, values=i)
             conn.commit()
-            
-
         conn.close()
 
     #================================get cursor function=======================
-
     def get_cursor(self, event=""):
+            cursor_focus = self.student_table()
+            content = self.student_table.item(cursor_focus)
+            data = content["values"]
+
+            self.var_std_id.set(data[0])
+
+
+    def get_student_cursor(self, event=""):
         cursor_focus = self.student_table.focus()
         content = self.student_table.item(cursor_focus)
         data = content["values"]
@@ -274,13 +330,49 @@ class Student_view:
         self.var_roll.set(data[8])
         self.var_email.set(data[9])
         self.var_teacher.set(data[10])
-        self.var_radio1.set(data[11] and "Yes")
-        self.take_photo_btn['state'] = tk.NORMAL
-        self.radiobtn1['state'] = tk.NORMAL
-        self.radiobtn2['state'] = tk.DISABLED
 
+        # Check if var_radio1 is "Yes" and enable the button accordingly
+
+
+
+
+    # ========================================Update Function==========================
+    def update_data(self):
+        if self.var_std_id.get()=="" or self.var_std_name.get()=="" or self.var_std_mname.get()=="" or self.var_std_lname.get()=="" or   self.var_div.get()=="" or self.var_gender.get()=="" or self.var_roll.get()=="" or self.var_dob.get()=="" or self.var_email.get()=="" or self.var_address.get()=="" or self.var_teacher.get()=="":
+            messagebox.showerror("Error","Please Fill All Fields are Required!",parent=self.root)
+        else:
+            try:
+                Update=messagebox.askyesno("Update","Do you want to Update this Student Details!",parent=self.root)
+                if Update > 0:
+                    conn = mysql.connector.connect(username='root', password='',host='localhost',database='face_recognition')
+                    mycursor = conn.cursor()
+                    mycursor.execute("update student set Name=%s,mName=%s,lName=%s,Division=%s,Gender=%s,DOB=%s,Address=%s,Roll_No=%s,Email=%s,Teacher_Name=%s,PhotoSample=%s where Student_ID=%s",( 
+                    self.var_std_name.get(),
+                    self.var_std_mname.get(),
+                    self.var_std_lname.get(),
+                    self.var_div.get(),
+                    self.var_gender.get(),
+                    self.var_dob.get(),
+                    self.var_address.get(),
+                    self.var_roll.get(),
+                    self.var_email.get(),
+                    self.var_teacher.get(),
+                    self.var_radio1.get(),
+                    self.var_std_id.get()   
+                    ))
+                else:
+                    if not Update:
+                        return
+                messagebox.showinfo("Success","Successfully Updated!",parent=self.root)
+                conn.commit()
+                self.fetch_data()
+                conn.close()
+                logging.info(f"User updated data for Student ID: {self.var_std_id.get()}")
+            except Exception as es:
+                logging.error(f"Error during data update: {str(es)}")
+                messagebox.showerror("Error",f"Due to: {str(es)}",parent=self.root)
     
-    #==============Delete Function=============
+    #==============================Delete Function=========================================
     def delete_data(self):
         if self.var_std_id.get()=="":
             messagebox.showerror("Error","Student Id Must be Required!",parent=self.root)
@@ -318,51 +410,108 @@ class Student_view:
         self.var_address.set(""),
         self.var_roll.set(""),
         self.var_email.set(""),
-        self.var_teacher.set(""),
-        self.var_radio1.set("No")
-        self.take_photo_btn['state'] = tk.DISABLED
-        self.radiobtn1['state'] = tk.DISABLED
-        self.radiobtn2['state'] = tk.NORMAL
+        self.var_teacher.set("")
     
-    # ===================Search Data==================
+    # ===========================Search Data===================
+
+
     def search_data(self):
-        if self.var_search.get() == "" or self.var_searchTX.get() == "Select":
-            messagebox.showerror("Error", "Select Combo option and enter entry box", parent=self.root)
+        search_query = self.search_entry.get()
+
+        # Check if search query is empty
+     
+
+        conn = mysql.connector.connect(user='root', password='', host='localhost', database='face_recognition')
+        mycursor = conn.cursor()
+        mycursor.execute("SELECT * FROM student WHERE Name LIKE %s OR mname LIKE %s OR lname LIKE %s OR Division LIKE %s OR Gender LIKE %s OR DOB LIKE %s OR Address LIKE %s OR Roll_No LIKE %s OR Email LIKE %s OR Teacher_Name LIKE %s", 
+        ('%' + search_query + '%', '%' + search_query + '%', '%' + search_query + '%', '%' + search_query + '%', '%' + search_query + '%','%' + search_query + '%', '%' + search_query + '%', '%' + search_query + '%', '%' + search_query + '%', '%' + search_query + '%'))
+        data = mycursor.fetchall()
+
+        if len(data) != 0:
+            self.student_table.delete(*self.student_table.get_children())
+            for row in data:
+                self.student_table.insert("", END, values=tuple(row)) # insert the updated row back as a tuple
+            conn.commit()
+       
+
+        conn.close()
+
+
+
+
+#=====================This part is related to Opencv Camera part=======================
+# ==================================Generate Data set take image=========================
+    def generate_dataset(self):
+        if self.var_std_id.get()=="" or self.var_std_name.get()=="" or self.var_div.get()=="" or self.var_gender.get()=="" or self.var_dob.get()=="" or self.var_email.get()=="" or self.var_address.get()=="" or self.var_roll.get()=="" or self.var_teacher.get()=="":
+            messagebox.showerror("Error","Please Fill All Fields are Required!",parent=self.root)
         else:
             try:
-                conn = mysql.connector.connect(user='root', password='', host='localhost', database='face_recognition')
-                my_cursor = conn.cursor()
+                
+                conn = mysql.connector.connect(username='root', password='',host='localhost',database='face_recognition')
+                mycursor = conn.cursor()
+                mycursor.execute("select * from student")
+                myreslut = mycursor.fetchall()
+                id=0
+                for x in myreslut:
+                    id+=1
 
-                search_field = self.var_searchTX.get()
-                search_value = str(self.var_search.get())
-
-                if search_field == "Section":
-                    # Modify the SQL query based on the "Section" search
-                    sql = "SELECT Student_ID, Name, mName, lName, Division, Gender, DOB, Address, Roll_No, Email, Teacher_Name, PhotoSample FROM student WHERE Email LIKE %s"
-                elif search_field == "Name":
-                    # Modify the SQL query based on the "Name" search
-                    sql = "SELECT Student_ID, Name, mName, lName, Division, Gender, DOB, Address, Roll_No, Email, Teacher_Name, PhotoSample FROM student WHERE Name LIKE %s"
-                else:
-                    # Default to the original query (Email search)
-                    sql = "SELECT Student_ID, Name, mName, lName, Division, Gender, DOB, Address, Roll_No, Email, Teacher_Name, PhotoSample FROM student WHERE Roll_No LIKE %s"
-
-                params = (f"%{search_value}%",)
-                my_cursor.execute(sql, params)
-
-                rows = my_cursor.fetchall()
-
-                if len(rows) != 0:
-                    self.student_table.delete(*self.student_table.get_children())
-                    for i in rows:
-                        self.student_table.insert("", END, values=i)
-                else:
-                    messagebox.showerror("Error", "Data Not Found", parent=self.root)
-
+                mycursor.execute("update student set Name=%s,mName=%s,lName=%s,Division=%s,Gender=%s,DOB=%s,Address=%s,Roll_No=%s,Email=%s,Teacher_Name=%s,PhotoSample=%s where Student_ID=%s",( 
+                    self.var_std_name.get(),
+                    self.var_std_mname.get(),
+                    self.var_std_lname.get(),
+                    self.var_div.get(),
+                    self.var_gender.get(),
+                    self.var_dob.get(),
+                    self.var_address.get(),
+                    self.var_roll.get(),
+                    self.var_email.get(),
+                    self.var_teacher.get(),
+                    self.var_radio1.get(),
+                    self.var_std_id.get()==id+1   
+                    ))
                 conn.commit()
+                self.fetch_data()
+                self.reset_data()
                 conn.close()
 
+                # ====================part of opencv=======================
+
+                face_classifier = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
+                def face_croped(img):
+                    # conver gary sacle
+                    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+                    faces = face_classifier.detectMultiScale(gray,1.3,5)
+                    #Scaling factor 1.3
+                    # Minimum naber 5
+                    for (x,y,w,h) in faces:
+                        face_croped=img[y:y+h,x:x+w]
+                        return face_croped
+                cap=cv2.VideoCapture(0)
+                img_id=0
+                while True:
+                    ret,my_frame=cap.read()
+                    if face_croped(my_frame) is not None:
+                        img_id+=1
+                        face=cv2.resize(face_croped(my_frame),(200,200))
+                        face=cv2.cvtColor(face,cv2.COLOR_BGR2GRAY)
+                        file_path="data_img/stdudent."+str(id)+"."+str(img_id)+".jpg"
+                        cv2.imwrite(file_path,face)
+                        cv2.putText(face,str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)        
+                        cv2.imshow("Capture Images",face)
+
+                    if cv2.waitKey(1)==13 or int(img_id)==100:
+                        break
+                cap.release()
+                cv2.destroyAllWindows()
+                messagebox.showinfo("Result","Generating dataset completed!",parent=self.root)
+                logging.info(f"User generated dataset for Student ID: {self.var_std_id.get()}")
             except Exception as es:
-                messagebox.showerror("Error", f"Due To: {str(es)}", parent=self.root)
+                logging.error(f"Error during dataset generation: {str(es)}")
+                messagebox.showerror("Error",f"Due to: {str(es)}",parent=self.root) 
+
+
+
 
 def main():
     root = tk.Tk()
