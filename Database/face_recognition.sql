@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `email`, `pwd`) VALUES
-(1, 'admin', 'admin123');
+(1, 'admin@balii.edu.ph', 'admin123');
 
 -- --------------------------------------------------------
 
