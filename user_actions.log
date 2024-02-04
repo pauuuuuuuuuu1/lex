@@ -73,3 +73,8 @@ INFO:root:User Login: loyola@gmail.com
 2024-02-04 22:50:11,420 - INFO - User decided not to proceed to MainApp.
 2024-02-04 22:50:40,638 - INFO - User Login: loyola@gmail.com
 2024-02-04 23:11:10,446 - INFO - User Login: loyola@gmail.com
+WARNING:root:Invalid login attempt detected.
+INFO:root:User Login: loyola@gmail.com
+INFO:root:User Login: loyola@gmail.com
+INFO:root:User Login: loyola@gmail.com
+INFO:root:User Login: loyola@gmail.com
