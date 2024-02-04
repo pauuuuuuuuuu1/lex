@@ -48,9 +48,9 @@ class Student:
 
         # self.root.state('zoomed')
         self.root.attributes('-fullscreen',True)
+        
 
-
-        #-----------Variables-------------------
+        #-----------Variables----------
         self.var_std_id=StringVar()
         self.var_std_name=StringVar()
         self.var_std_mname=StringVar()
@@ -63,12 +63,6 @@ class Student:
         self.var_address=StringVar()
         self.var_teacher=StringVar()
 
-        # def grab_date():
-        #     student_dob_entry = cal.get_date()
-        #     print("Selected Date:", student_dob_entry)
-        #     # Add your logic to handle the selected date as needed
-        #     date_window.destroy()
-
         def pick_date(event):
             global cal, date_window
 
@@ -76,9 +70,6 @@ class Student:
             date_window.grab_set()
             date_window.title('Choose Date of Birth')
             date_window.geometry('250x220+590+370')
-
-            # Set today's date as the minimum date
-   
 
             # Set today's date as the maximum date
             max_date = datetime.now().date()
@@ -94,11 +85,7 @@ class Student:
             student_dob_entry.insert(0, cal.get_date())
             date_window.destroy()  # Corrected line: destroy the date_window
 
-        # Assuming you have a delete_window somewhere else in your code
-        # and you want to destroy it, you can add a function like this:
-            
 
-    # This part is image labels setting start 
         # backgorund image 
         bg1=Image.open(r"Images_GUI\stdcover.jpg")
         bg1=bg1.resize((1566,850),Image.LANCZOS)
@@ -246,10 +233,6 @@ class Student:
         take_photo_btn=Button(btn_frame,command=self.generate_dataset,text="Take Pic",width=9,font=("verdana",12,"bold"),fg="white",bg="#003D60", state=DISABLED)
         take_photo_btn.grid(row=0,column=4,padx=8,pady=10,sticky=W)
 
-        
-
-
-
 
         #----------------------------------------------------------------------
         # Right Label Frame 
@@ -284,7 +267,7 @@ class Student:
         generate_csv_btn.grid(row=0, column=5, padx=5, pady=10, sticky=W)
 
 
-        # -----------------------------Table Frame-------------------------------------------------
+        # --------------------------Table Frame--------------------------
         #Table Frame 
         #Searching System in Right Label Frame 
         table_frame = Frame(right_frame,bd=2,bg="white",relief=RIDGE)
@@ -339,7 +322,7 @@ class Student:
 
    
 
-# ==================Function Decleration==============================
+# ==================Function Declaration======================
         self.take_photo_btn = take_photo_btn
         self.radiobtn1 = radiobtn1
         self.radiobtn2 = radiobtn2
@@ -438,7 +421,7 @@ class Student:
                 messagebox.showerror("Error",f"Due to: {str(es)}",parent=self.root)
 
 
-    # ===========================Fetch data form database to table ================================
+    # ========================== Fetch data form database to table ============================
 
     def fetch_data(self):
         conn = mysql.connector.connect(username='root', password='',host='localhost',database='face_recognition')

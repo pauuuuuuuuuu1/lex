@@ -9,7 +9,7 @@ from school_info import Schoolinfo
 from offline_face_recognition import OFFline_face_recognition
 from instruction import Instruction
 from students_only import Student_view
-from changepass import Profile
+from changepass import Reset
 
 
 class MainApp:
@@ -31,10 +31,6 @@ class MainApp:
         bg_img = Label(self.root,image=self.photobg1)
         bg_img.place(x=0, y=0, relwidth=1, relheight=1)
 
-
-       # Create buttons below the section 
-        # ------------------------------------------------------------------------------------------------------------------- 
-        
         # student panel
         std_img_btn=Image.open(r"Images_GUI\student.png")
         std_img_btn=std_img_btn.resize((200,200),Image.LANCZOS)
@@ -138,7 +134,7 @@ class MainApp:
         self.root.withdraw()
         self.window7 = tk.Toplevel(self.root)
         self.disable_close_button(self.window7)
-        self.app7 = Profile(self.window7, self.show_main_app)
+        self.app7 = Reset(self.window7, self.show_main_app)
     
     def open_window9(self):
         self.root.withdraw()

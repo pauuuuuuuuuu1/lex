@@ -6,7 +6,7 @@ import mysql.connector
 import tkinter as tk
 import re
 
-class Profile:
+class Reset:
     def __init__(self, root, show_main_app_callback=None):
         self.root = root
         self.root.title("User Profile")
@@ -102,7 +102,7 @@ class Profile:
     
 def main():
     root = tk.Tk()
-    app = Profile(root)
+    app = Reset(root)
     root.mainloop()
 
 if __name__ == "__main__":
