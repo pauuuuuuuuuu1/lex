@@ -7,7 +7,7 @@ import tkinter as tk
 import re
 
 class Reset:
-    def __init__(self, root, show_main_app_callback=None):
+    def __init__(self, root, employee_id, show_main_app_callback=None):
         self.root = root
         self.root.title("User Profile")
         self.root.geometry("1566x768+0+0")
@@ -24,6 +24,9 @@ class Reset:
         bg_img = Label(self.root,image=self.photobg1)
         bg_img.place(x=0, y=0, relwidth=1, relheight=1)
 
+        self.var_employee_id = StringVar()
+        self.var_employee_id.set(employee_id)
+        
         self.var_old_pwd = StringVar()
         self.var_password = StringVar()
         self.var_confirm_pwd = StringVar()
@@ -99,10 +102,10 @@ class Reset:
         if hasattr(self, 'show_main_app_callback') and callable(self.show_main_app_callback):
             self.show_main_app_callback()  # Call the callback to show MainApp
 
-    
 def main():
     root = tk.Tk()
-    app = Reset(root)
+    employee_id = get_logged_in_employee_id()  # Fetch employee_id via your own method
+    app = Reset(root, employee_id)
     root.mainloop()
 
 if __name__ == "__main__":
