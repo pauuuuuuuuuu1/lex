@@ -20,7 +20,6 @@ class MainApp:
 
         self.root.attributes('-fullscreen',True)
 
-
         # backgorund image 
         bg1=Image.open(r"Images_GUI\cover.jpg")
         bg1=bg1.resize((1566,850),Image.LANCZOS)
@@ -179,8 +178,7 @@ class MainApp:
         if hasattr(self, 'window9'):
             self.window9.destroy()
         if hasattr(self, 'window10'):
-            self.window10.destroy()
-    
+            self.window10.destroy() 
 
 def main():
     root = tk.Tk()
