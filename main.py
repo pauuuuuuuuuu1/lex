@@ -11,7 +11,6 @@ from instruction import Instruction
 from students_only import Student_view
 from changepass import Reset
 
-
 class MainApp:
     
     def __init__(self, root, show_main_app_callback):
@@ -77,22 +76,22 @@ class MainApp:
 
         att_b1 = tk.Button(self.root, text="Attendance", command=self.open_window4, cursor="hand2",font=("tahoma",15,"bold"),bg="#003D60",fg="white")
         att_b1.place(x=1050,y=620,width=221,height=45)
-
-        trai_b1 = tk.Button(self.root, text="Change Password", command=self.open_window7,cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="#003D60")
-        trai_b1.place(x=270,y=680,width=221,height=45)
         
         pho_b1_1 = tk.Button(self.root, text="School Info", command=self.open_window6,cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="#003D60")
-        pho_b1_1.place(x=530,y=680,width=221,height=45)
+        pho_b1_1.place(x=270,y=680,width=221,height=45)
 
         ins_b1 = tk.Button(self.root, text="Instruction", command=self.open_window9,font=("tahoma",15,"bold"),bg="white",fg="#003D60")
-        ins_b1.place(x=790,y=680,width=221,height=45)
+        ins_b1.place(x=530,y=680,width=221,height=45)
 
         hlp_b1_1 = tk.Button(self.root, text="Help Support", command=self.open_window5,cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="#003D60")
-        hlp_b1_1.place(x=1050,y=680,width=221,height=45)
+        hlp_b1_1.place(x=790,y=680,width=221,height=45)
+        
+        trai_b1 = tk.Button(self.root, text="Change Password", command=self.open_window7,cursor="hand2",font=("tahoma",15,"bold"),bg="white",fg="#003D60")
+        trai_b1.place(x=1050,y=680,width=221,height=45)
 
         # exit
         exi_b1_1 = tk.Button(self.root, text="LOGOUT", command=self.open_window10,cursor="hand2",font=("tahoma",15,"bold"),bg="#003D60",fg="white")
-        exi_b1_1.grid(row=0,column=1,padx=1450,pady=810,sticky=E)
+        exi_b1_1.grid(row=0,column=1,padx=1420,pady=810,sticky=E)
     
     def open_window1(self):
         self.root.withdraw()

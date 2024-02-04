@@ -84,8 +84,8 @@ class Login:
         loginbtn=Button(frame2,command=self.forget_pwd,text="Forget password?",font=("times new roman",13),bd=0,relief=RIDGE,fg="white",bg="#6A8CC9",activeforeground="orange",activebackground="#002B53")
         loginbtn.place(x=33,y=400,width=120,height=25)
 
-        return_button = Button(self.root, text="QUIT", command=self.open_window10, font=("arial",12,"bold"),fg="white", bg="#002B53")
-        return_button.grid(row=0,column=1,padx=1455,pady=820,sticky=E)
+        return_button = Button(self.root, text="EXIT", command=self.open_window10, font=("arial",15,"bold"),fg="white", bg="#002B53")
+        return_button.grid(row=0,column=1,padx=1455,pady=810,sticky=E)
 
 
         # Creating Button Registration

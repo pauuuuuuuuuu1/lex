@@ -30,34 +30,34 @@ class Reset:
         self.var_confirm_pwd = StringVar()
 
         id_label = Label(self.root,text="Employee ID:",font=("arial",15),fg="white",bg="#003D60")
-        id_label.place(x=599, y=350)
+        id_label.place(x=608, y=365)
 
         self.id_entry = ttk.Entry(self.root, textvariable=self.var_employee_id, font=('times new roman', 15))
-        self.id_entry.place(x=750, y=345, width=210,height=35)
+        self.id_entry.place(x=750, y=360, width=210,height=35)
         
         old_pwd_label = Label(self.root,text="Old Password:",font=("arial",15),fg="white",bg="#003D60")
-        old_pwd_label.place(x=599, y=400)
+        old_pwd_label.place(x=596, y=420)
 
         self.old_pwd_entry = ttk.Entry(self.root, textvariable=self.var_old_pwd, font=('times new roman', 15))
-        self.old_pwd_entry.place(x=750, y=395, width=210,height=35)
+        self.old_pwd_entry.place(x=750, y=415, width=210,height=35)
 
         # Label for New Password
         new_pwd_label = Label(self.root,text="New Password:",font=("arial",15),fg="white",bg="#003D60")
-        new_pwd_label.place(x=590, y=465)
+        new_pwd_label.place(x=590, y=480)
 
         self.txtteacherpwd=ttk.Entry(self.root,textvariable=self.var_password,font=('times new roman',15))
-        self.txtteacherpwd.place(x=750, y=460, width=210, height=35)
+        self.txtteacherpwd.place(x=750, y=475, width=210, height=35)
         
         # Label for Confirm Password
         confirm_pwd_label = Label(self.root,text="Confirm Password:",font=("arial",15),fg="white",bg="#003D60")
-        confirm_pwd_label.place(x=560, y=530)
+        confirm_pwd_label.place(x=560, y=540)
         
         self.confirm_pwd_entry = ttk.Entry(self.root, textvariable=self.var_confirm_pwd, font=('times new roman', 15))
-        self.confirm_pwd_entry.place(x=750, y=525, width=210, height=35)
+        self.confirm_pwd_entry.place(x=750, y=535, width=210, height=35)
 
 
         btn_save=Button(root, text="CHANGE PASSWORD", command=self.update_password, font=("arial",15), bg="#6A8CC9", fg="white")
-        btn_save.place(x=650, y=600, width=230,height=40)
+        btn_save.place(x=650, y=620, width=230,height=40)
         
         self.return_button = tk.Button(self.root, text="BACK", command=show_main_app_callback, font=("verdana",15),fg="white", bg="#003D60")
         self.return_button.grid(row=0,column=1,padx=1445,pady=805,sticky=E)
@@ -85,7 +85,10 @@ class Reset:
         
         # Check if the old password matches current password in the database
         if row[0] == self.var_old_pwd.get():
-            # If it does, update the password in database to the new password
+            new_password = self.var_password.get()
+            if not re.match(r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{8,}$', new_password):
+                messagebox.showerror("Error", "Password should be at least 8 characters long!", parent=self.root)
+                return
             try:
                 query=("update regteach set password=%s where employee_id=%s")
                 value=(self.var_password.get(), self.var_employee_id.get())

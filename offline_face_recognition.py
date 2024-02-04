@@ -43,7 +43,7 @@ class OFFline_face_recognition:
         std_b1_1 = Button(bg_img,command=self.face_recog,text="Face Detector",cursor="hand2",font=("arial",15,"bold"),bg="#003D60",fg="white")
         std_b1_1.place(x=600,y=600,width=280,height=45)
 
-        return_button = tk.Button(self.root, text="Return to Dashboard", command=show_main_app_callback, font=("verdana",12,"bold"),fg="white", bg="#003D60")
+        return_button = tk.Button(self.root, text="Return to Dashboard", command=show_main_app_callback, font=("arial",12,"bold"),fg="white", bg="#003D60")
         return_button.grid(row=0,column=1,padx=15,pady=820,sticky=W)
         # create function for button 
 
